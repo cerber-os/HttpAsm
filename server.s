@@ -416,8 +416,8 @@ segment .data
   http_header_error:    db  "Error: Not implemented header requested", 0Ah, 0
 
   http_bad_request:     db  "html/400.html", 0
-  http_access_denied    db  "html/403.html", 0
-  http_not_found        db  "html/404.html", 0
+  http_access_denied:   db  "html/403.html", 0
+  http_not_found:       db  "html/404.html", 0
   error_req_too_large:  db  "html/413.html", 0
   http_header_200:      db  "HTTP/1.0 200 OK", 0
   http_header_400:      db  "HTTP/1.0 400 Bad Request", 0
