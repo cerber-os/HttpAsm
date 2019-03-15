@@ -265,9 +265,9 @@ http_response:
 
 ;; http_process
 var_client          equ -8
-var_request_buffer  equ -520
+var_request_buffer  equ -528
 http_process:
-  enter 520, 0
+  enter 528, 0
   mov qword[rbp+var_client], rdi
 
   ;; Read request
@@ -316,7 +316,7 @@ http_process:
   jmp .exit
   .error_req_too_large:
     mov rdi, qword[rbp+var_client]
-    mov rsi, error_req_too_large
+    mov rsi, http_req_too_large
     mov rdx, 413
     call http_response
     jmp .exit
@@ -393,7 +393,7 @@ segment .data
   SYS_LISTEN    equ 50
   SYS_EXIT      equ 60
 
-  LISTEN_PORT equ 36895   ;; Have to be converted to big endian
+  LISTEN_PORT   equ 36895   ;; Has to be converted to big endian
 
   struc SOCKADDR_T
     family: resw  1
@@ -418,7 +418,7 @@ segment .data
   http_bad_request:     db  "html/400.html", 0
   http_access_denied:   db  "html/403.html", 0
   http_not_found:       db  "html/404.html", 0
-  error_req_too_large:  db  "html/413.html", 0
+  http_req_too_large:   db  "html/413.html", 0
   http_header_200:      db  "HTTP/1.0 200 OK", 0
   http_header_400:      db  "HTTP/1.0 400 Bad Request", 0
   http_header_403:      db  "HTTP/1.0 403 Forbidden", 0
